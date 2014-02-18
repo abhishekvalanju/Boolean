@@ -1,0 +1,156 @@
+﻿<html>
+    <head>
+        <title>Welcome to Kompact!</title>
+	<style>
+	    div.category {
+		width: 100%;
+		height: 50px;
+		color: white;
+		font-size: 25pt;
+		text-align: center;
+		line-height: 50px;
+	    }
+            
+            .clickable:hover {
+                cursor: pointer;
+            }
+            
+            div.banner {
+                width: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                font-size: 50pt;
+                text-align: center;
+                background: orange;
+            }
+            
+            div.quote {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                font-size: 15pt;
+                text-align: center;
+                background: orange;
+                border-radius: 10px;
+            }
+            
+            div.articleBox {
+                background: white;
+                float: left;
+                text-align: center;
+                position: relative;
+                vertical-align: middle;
+                display: inline-block;
+            }
+            
+            div.boxTitle {
+                width: 100%;
+                color: white;
+                font-size: 20pt;
+                text-align: center;
+                background: orange;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+	</style>
+	<script src = "http://code.jquery.com/jquery-2.0.0.js"></script>
+	<script>
+	    var GLOBALS = {
+		dimensions : {
+		    window_width : 0,
+		    window_height : 0
+		}
+	    };
+
+	    // get dimensions of screen
+	    function getDims(){
+		GLOBALS.dimensions.window_width = window.innerWidth;
+		GLOBALS.dimensions.window_height = window.innerHeight;
+	    };
+
+	    // set page upon load or resize
+	    function resetPage(){
+		getDims();
+		document.getElementById("main").style.minHeight = GLOBALS.dimensions.window_height;
+	    };
+
+	    window.onerror = function(msg, url, linenumber){
+		alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+		return true;
+	    };
+
+	    window.onload = function(){
+		resetPage();
+                for (var i = 0; i < 16; i++){
+                document.getElementById("articleContainer").appendChild(articleBox());
+                }
+	    };
+
+	    window.onresize = function(){
+		resetPage();
+	    };
+            
+            // add article box to categories page
+            function articleBox(){
+                var box = document.createElement("div");
+                box.className = "articleBox clickable";
+                box.style.width = GLOBALS.dimensions.window_width*0.8*0.75*0.25;
+                box.style.height = box.style.width;
+                box.style.marginLeft = GLOBALS.dimensions.window_width*0.8*0.05;
+                box.style.marginTop = GLOBALS.dimensions.window_width*0.8*0.05;
+                box.innerText = "\n\n\n\n\npicgohere";
+                var title = document.createElement("div");
+                title.className = "boxTitle";
+                title.innerText = "titlegohere";
+                $("div.articleBox").mouseenter(function(){
+                    jQuery(this).find("div.boxTitle").css("font-size", "25pt");
+                }).mouseout(function(){
+                    $("div.boxTitle").css("font-size", "20pt");
+                });
+                $("div.boxTitle").mouseenter(function(){
+                    $(this).css("font-size", "25pt");
+                }).mouseout(function(){
+                    $("div.boxTitle").css("font-size", "20pt");
+                });
+                box.appendChild(title);
+                return box;
+            };
+
+	    // animations
+	    $(document).ready(function(){
+                $("div.category").mouseenter(function(){
+                    $(this).css("width", "125%");
+                }).mouseout(function(){
+                    $("div.category").css("width", "100%");
+                });
+	    });
+	</script>
+    </head>
+    <body style = "margin: 0;">
+	<div id = "sidebar" style = "width: 20%; height: 100%; float: left; position: fixed; border-right: 5px solid orange;">
+	    <div class = "category clickable" style = "background: orange;">All News</div>
+	    <div class = "category clickable" style = "background: #2ecc71;">Business</div>
+	    <div class = "category clickable" style = "background: #3498db;">Entertainment</div>
+	    <div class = "category clickable" style = "background: #95a5a6;">Finance</div>
+	    <div class = "category clickable" style = "background: #9b59b6;">Health</div>
+	    <div class = "category clickable" style = "background: #e74c3c;">Politics</div>
+	    <div class = "category clickable" style = "background: #f1c40f;">Science</div>
+	    <div class = "category clickable" style = "background: #16a085;">Sports</div>
+	    <div class = "category clickable" style = "background: #c0392b;">Tech</div>
+	    <div class = "category clickable" style = "background: #2980b9;">US</div>
+	    <div class = "category clickable" style = "background: #34495e;">World</div>
+	</div>
+	<div id = "main" style = "width: 80%; float: right; background: #ecf0f1;">
+            <div class = "banner">All News</div><br>
+            <div class = "quote">
+                <i>"If you find a dead body, it's not mine."</i><br>
+                <i>- (Probably OJ)</i>
+            </div>
+            <div id = "articleContainer"></div>
+            <div id = "loadMore" style = "width: 100%; height: 100px; float: left;"></div>
+	</div>
+    </body>
+</html>

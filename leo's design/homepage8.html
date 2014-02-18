@@ -1,0 +1,80 @@
+﻿<html>
+    <head>
+        <title>Welcome to Kompact!</title>
+	<style>
+	    div.category {
+		width: 100%;
+		height: 50px;
+		color: white;
+		font-size: 25pt;
+		text-align: center;
+		line-height: 50px;
+	    }
+            
+            .clickable:hover {
+                cursor: pointer;
+            }
+	</style>
+	<script src = "http://code.jquery.com/jquery-2.0.0.js"></script>
+	<script>
+	    var GLOBALS = {
+		dimensions : {
+		    window_width : 0,
+		    window_height : 0
+		}
+	    };
+
+	    // get dimensions of screen
+	    function getDims(){
+		GLOBALS.dimensions.window_width = window.innerWidth;
+		GLOBALS.dimensions.window_height = window.innerHeight;
+	    };
+
+	    // set page upon load or resize
+	    function resetPage(){
+		getDims();
+		document.getElementById("main").style.minHeight = GLOBALS.dimensions.window_height;
+	    };
+
+	    window.onerror = function(msg, url, linenumber){
+		alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+		return true;
+	    };
+
+	    window.onload = function(){
+		resetPage();
+	    };
+
+	    window.onresize = function(){
+		resetPage();
+	    };
+
+	    // animations
+	    $(document).ready(function(){
+                $("div.category").mouseenter(function(){
+                    $(this).css("width", "125%");
+                }).mouseout(function(){
+                    $("div.category").css("width", "100%");
+                });
+	    });
+	</script>
+    </head>
+    <body style = "margin: 0;">
+	<div id = "sidebar" style = "width: 20%; height: 100%; float: left; position: fixed; border-right: 1px solid #bdc3c7;">
+	    <div class = "category clickable" style = "background: orange;">All News</div>
+	    <div class = "category clickable" style = "background: #2ecc71;">Business</div>
+	    <div class = "category clickable" style = "background: #3498db;">Entertainment</div>
+	    <div class = "category clickable" style = "background: #95a5a6;">Finance</div>
+	    <div class = "category clickable" style = "background: #9b59b6;">Health</div>
+	    <div class = "category clickable" style = "background: #e74c3c;">Politics</div>
+	    <div class = "category clickable" style = "background: #f1c40f;">Science</div>
+	    <div class = "category clickable" style = "background: #16a085;">Sports</div>
+	    <div class = "category clickable" style = "background: #c0392b;">Tech</div>
+	    <div class = "category clickable" style = "background: #2980b9;">US</div>
+	    <div class = "category clickable" style = "background: #34495e;">World</div>
+	</div>
+	<div id = "main" style = "width: 80%; float: right; background: #ecf0f1;">
+	    
+	</div>
+    </body>
+</html>
