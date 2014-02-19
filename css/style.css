@@ -1055,11 +1055,11 @@
 	{
 		position: relative;
 		background-image: url('../images/header.jpg');
-		background-size: cover;
-		background-position: center center;
+		background-size: 80%;
+		background-position: center left;
 		background-attachment: fixed;
 		color: #fff;
-		text-align: center;
+		text-align: center ;
 		padding: 2.5em 0 2em 0;
 		cursor: default;
 	}
@@ -1077,14 +1077,15 @@
 				position: absolute;
 				left: 0;
 				top: 0;
-				width: 100%;
+				width: 80%;
 				height: 100%;
-				opacity: 1.0;
+				/*opacity: 1.0;
 				-moz-transition: opacity 2s ease-in-out;
 				-webkit-transition: opacity 2s ease-in-out;
 				-o-transition: opacity 2s ease-in-out;
 				-ms-transition: opacity 2s ease-in-out;
 				transition: opacity 2s ease-in-out;
+                                */
 			}
 		
 			.homepage #header.ready .overlay
@@ -1367,6 +1368,7 @@
 
 	#main
 	{
+            
 	}
 	
 		#main section:first-of-type
