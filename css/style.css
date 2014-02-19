@@ -75,7 +75,7 @@
 		display: block;
 		font-size: 1.5em;
 		margin-top: 1em;
-		line-height: 1.5em;
+              	line-height: 1.5em;
 	}
 
 	strong, b
@@ -285,7 +285,7 @@
 			.image.featured
 			{
 				display: block;
-				width: 100%;
+				width: 80%;
 				margin: 0 0 4em 0;
 			}
 			
@@ -1036,6 +1036,7 @@
 		background: #fff;
 		margin: 0 0 2em 0;
 		padding: 6em 0 6em 0;
+                width: 80%;
 	}
 	
 		.wrapper.style1
@@ -1097,6 +1098,7 @@
 		{
 			position: relative;
 			z-index: 1;
+                        width: 80%;
 			margin: 0;
 			padding: 4em 0 0 0;
 		}
@@ -1122,6 +1124,8 @@
 		{
 			font-size: 1.25em;
 			margin: 0;
+                        width: 80%;
+                        text-align: justified;
 		}
 		
 		#header .button
@@ -1169,7 +1173,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
+		width: 80%;
 		text-align: center;
 		padding: 1.5em 0 1.5em 0;
 		z-index: 1;
@@ -1316,6 +1320,7 @@
 	{
 		background: #fff;
 		text-align: center;
+                width: 80%;
 		padding: 4.5em 0 4.5em 0;
 	}
 
@@ -1374,6 +1379,7 @@
 		#main section:first-of-type
 		{
 			padding-top: 2em;
+                        
 		}		
 	
 /*********************************************************************************/
@@ -1384,6 +1390,7 @@
 	{
 		position: relative;
 		overflow: hidden;
+                width: 80%;
 		padding: 6em 0 6em 0;
 		background: #2b252c;
 		color: #fff;
@@ -1447,6 +1454,7 @@
 	{
 		position: relative;
 		overflow: hidden;
+                width: 80%;
 		padding: 2em 0 2em 0;
 	}
 
