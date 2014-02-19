@@ -1,0 +1,146 @@
+<html>
+    <head>
+        <title>Kompacted Article</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <style>
+            body {
+                margin: 0;
+            }
+            
+            #main {
+                width: 80%;
+                float: left;
+            }
+            
+            #sidebar {
+                width: 20%;
+                height: 100%;
+                right: 0;
+                background: yellow;
+                position: fixed;
+            }
+            
+	    div.category {
+		width: 100%;
+                float: right;
+		color: white;
+		font-size: 25pt; /*1em = 12pt = 16px = 100% (for the default text font)*/
+		text-align: left;
+	    }
+            
+            div.category:hover {
+                width: 125%;
+            }
+            
+            div.category img {
+                float: left;
+                margin-left: 3%;
+            }
+            
+            div.category span {
+                float: left;
+                height: 100%;
+                margin-left: 3%;
+            }
+            
+            .clickable:hover {
+                cursor: pointer;
+            }
+        </style>
+        <script src = "http://code.jquery.com/jquery-2.0.0.js"></script>
+        <script>
+            var GLOBALS = {
+                dimensions : {
+                    win_width : 0,
+                    win_height : 0
+                },
+                categories : 11
+            };
+            
+	    window.onerror = function(msg, url, linenumber){
+		alert('Error message: '+msg+'\nURL: '+url+'\nLine Number: '+linenumber);
+		return true;
+	    };
+            
+            // get any dimensions for later use
+            function getDims(){
+                GLOBALS.dimensions.win_width = window.innerWidth;
+                GLOBALS.dimensions.win_height = window.innerHeight;
+            };
+            
+            // reset page any time onload or resize
+            function setPage(){
+                $("body").css({
+                    "min-width" : GLOBALS.dimensions.win_width + "px",
+                    "min-height" : GLOBALS.dimensions.win_height + "px"
+                });
+                $("#main").css("min-height", GLOBALS.dimensions.win_height + "px");
+                $("div.category").height(1/GLOBALS.categories * GLOBALS.dimensions.win_height + "px");
+                $("div.category img").attr({
+                    "width" : $("div.category").height()*0.8 + "px",
+                    "height" : $("div.category").height()*0.8 + "px"
+                }).css({"margin-top" : $("div.category").height()*0.1 + "px"});
+                $("div.category span").css("line-height", $("div.category span").height() + "px");
+            };
+            
+            window.onload = function(){
+                getDims();
+                setPage();
+            };
+            
+            window.onresize = function(){
+                getDims();
+                setPage();
+            };
+        </script>
+    </head>
+    <body>
+        <div id = "main"></div>
+        <div id = "sidebar">
+	    <div class = "category clickable" style = "background: #c0392b;">
+                <img src = "https://cdn1.iconfinder.com/data/icons/perfect-flat-icons-2/512/Newspaper_news_rss_vector_paper_symbol_simple.png" alt = "">
+                <span>All News</span>
+            </div>
+            <div class = "category clickable" style = "background: #e74c3c;">
+                <img src = "https://cdn1.iconfinder.com/data/icons/flat-services-icons/512/partnership.png" alt = "">
+                <span>Business</span>
+            </div>
+            <div class = "category clickable" style = "background: #d35400;">
+                <img src = "https://cdn3.iconfinder.com/data/icons/movie-video/512/Icon_35-512.png" alt = "">
+                <span>Entertainment</span>
+            </div>
+            <div class = "category clickable" style = "background: #e67e22;">
+                <img src = "money-bag.png" alt = "">
+                <span>Finance</span>
+            </div>
+            <div class = "category clickable" style = "background: orange;">
+                <img src = "https://cdn4.iconfinder.com/data/icons/flat-fitness-sport-pack-1-2/512/12_pill_medcine_vitamine-512.png" alt = "">
+                <span>Health</span>
+            </div>
+            <div class = "category clickable" style = "background: #f1c40f;">
+                <img src = "http://img.apartmenthl.com/system/citypages/categories/arts-museums-landmarks/icon_list.png" alt = "">
+                <span>Politics</span>
+            </div>
+            <div class = "category clickable" style = "background: #2ecc71;">
+                <img src = "https://cdn2.iconfinder.com/data/icons/large-svg-icons-part-3/512/retort_report_document_graph-512.png" alt = "alt">
+                <span>Science</span>
+            </div>
+            <div class = "category clickable" style = "background: #1abc9c;">
+                <img src = "https://cdn0.iconfinder.com/data/icons/sports-and-fitness-flat-colorful-icons-svg/137/Sports_flat_round_colorful_simple_activities_athletic_colored-03-512.png" alt = "">
+                <span>Sports</span>
+            </div>
+            <div class = "category clickable" style = "background: #3498db;">
+                <img src = "https://cdn0.iconfinder.com/data/icons/multimedia-and-communication-flat-icons-svg/136/Multimedia_communication_flat_mobile_Technology-08-21-512.png" alt = "">
+                <span>Tech</span>
+            </div>
+            <div class = "category clickable" style = "background: #9b59b6;">
+                <img src = "http://img.freeflagicons.com/thumb/fluttering_flag/united_states_of_america/united_states_of_america_640.png" alt = "">
+                <span>US</span>
+            </div>
+            <div class = "category clickable" style = "background: #8e44ad;">
+                <img src = "https://cdn1.iconfinder.com/data/icons/perfect-flat-icons-2/512/Earth_world_globe_internet_browser_planet.png" alt = "">
+                <span>World</span>
+            </div>
+        </div>
+    </body>
+</html>
