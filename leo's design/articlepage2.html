@@ -21,16 +21,16 @@
             }
             
 	    div.category {
-		width: 100%;
+		//width: 100%;
                 float: right;
 		color: white;
 		font-size: 25pt; /*1em = 12pt = 16px = 100% (for the default text font)*/
 		text-align: left;
 	    }
             
-            div.category:hover {
+            /*div.category:hover {
                 width: 125%;
-            }
+            }*/
             
             div.category img {
                 float: left;
@@ -52,9 +52,12 @@
             var GLOBALS = {
                 dimensions : {
                     win_width : 0,
-                    win_height : 0
+                    win_height : 0,
+                    sidebar_width : 0
                 },
-                categories : 11
+                categories : {
+                    count : 11
+                }
             };
             
 	    window.onerror = function(msg, url, linenumber){
@@ -66,6 +69,7 @@
             function getDims(){
                 GLOBALS.dimensions.win_width = window.innerWidth;
                 GLOBALS.dimensions.win_height = window.innerHeight;
+                GLOBALS.dimensions.sidebar_width = GLOBALS.dimensions.win_width*0.2;
             };
             
             // reset page any time onload or resize
@@ -75,12 +79,19 @@
                     "min-height" : GLOBALS.dimensions.win_height + "px"
                 });
                 $("#main").css("min-height", GLOBALS.dimensions.win_height + "px");
-                $("div.category").height(1/GLOBALS.categories * GLOBALS.dimensions.win_height + "px");
+                $("div.category").height(1/GLOBALS.categories.count * GLOBALS.dimensions.win_height + "px").width(GLOBALS.dimensions.sidebar_width + "px");
                 $("div.category img").attr({
                     "width" : $("div.category").height()*0.8 + "px",
                     "height" : $("div.category").height()*0.8 + "px"
                 }).css({"margin-top" : $("div.category").height()*0.1 + "px"});
                 $("div.category span").css("line-height", $("div.category span").height() + "px");
+                $("div.category").hover(function(){
+                    $("#sidebar").width($("#sidebar").width()*1.25 + "px");
+                    $(this).width($("div.category").width()*1.25 + "px");
+                }, function(){
+                    $("#sidebar").width(GLOBALS.dimensions.sidebar_width + "px");
+                    $("div.category").width(GLOBALS.dimensions.sidebar_width + "px");
+                });
             };
             
             window.onload = function(){
