@@ -16,21 +16,16 @@
                 width: 20%;
                 height: 100%;
                 right: 0;
-                background: yellow;
                 position: fixed;
             }
             
 	    div.category {
-		//width: 100%;
+		width: 100%;
                 float: right;
 		color: white;
 		font-size: 25pt; /*1em = 12pt = 16px = 100% (for the default text font)*/
 		text-align: left;
 	    }
-            
-            /*div.category:hover {
-                width: 125%;
-            }*/
             
             div.category img {
                 float: left;
@@ -46,6 +41,7 @@
             .clickable:hover {
                 cursor: pointer;
             }
+
         </style>
         <script src = "http://code.jquery.com/jquery-2.0.0.js"></script>
         <script>
@@ -53,10 +49,22 @@
                 dimensions : {
                     win_width : 0,
                     win_height : 0,
-                    sidebar_width : 0
+		    cat_width : 0,
+		    cat_height : 0
                 },
                 categories : {
-                    count : 11
+                    count : 11,
+		    "All News" : "#c0392b",
+		    "Business" : "#e74c3c",
+		    "Entertainment" : "#d35400",
+		    "Finance" : "#e67e22",
+		    "Health" : "orange",
+		    "Politics" : "#f1c40f",
+		    "Science" : "#2ecc71",
+		    "Sports" : "#1abc9c",
+		    "Tech" : "#3498db",
+		    "US" : "#9b59b6",
+		    "World" : "#8e44ad"
                 }
             };
             
@@ -69,35 +77,77 @@
             function getDims(){
                 GLOBALS.dimensions.win_width = window.innerWidth;
                 GLOBALS.dimensions.win_height = window.innerHeight;
-                GLOBALS.dimensions.sidebar_width = GLOBALS.dimensions.win_width*0.2;
+		GLOBALS.dimensions.cat_width = window.innerWidth*0.2;
+		GLOBALS.dimensions.cat_height = 1/GLOBALS.categories.count * GLOBALS.dimensions.win_height;
             };
-            
-            // reset page any time onload or resize
-            function setPage(){
+
+	    // initial minimum widths and heights
+	    function initPage(){
+
+		// body
                 $("body").css({
                     "min-width" : GLOBALS.dimensions.win_width + "px",
                     "min-height" : GLOBALS.dimensions.win_height + "px"
                 });
+
+		// main body
                 $("#main").css("min-height", GLOBALS.dimensions.win_height + "px");
-                $("div.category").height(1/GLOBALS.categories.count * GLOBALS.dimensions.win_height + "px").width(GLOBALS.dimensions.sidebar_width + "px");
+
+		// each category tab in sidebar
+		var span = 0;
+		var span_length = 0;
+		for (var i = 0; i < GLOBALS.categories.count; i++){ // find longest string
+		    if ($("div.category:eq(" + i + ") span").text().length > span_length){
+			span = i;
+			span_length = $("div.category:eq(" + i + ") span").text().length;
+		    }
+		}
+		$("div.category").css({
+		    "min-width" : $("div.category:eq(" + span +") span").outerWidth() + GLOBALS.dimensions.win_height/11*0.8 + $("div.category").width()*0.05*2 + "px",
+		    "min-height" : Math.ceil(GLOBALS.dimensions.cat_height) + "px"
+		});
+
+		// sidebar
+		$("#sidebar").css({
+		    "min-width" : $("div.category").css("min-width")
+		});
+
+		// any additional dimension getting
+		GLOBALS.dimensions.cat_width = $("div.category").width();
+	    };
+            
+            // reset page any time onload or resize
+            function setPage(){
+
+		// each category tab in sidebar
+                $("div.category").height(GLOBALS.dimensions.cat_height + "px")
+		    .hover(function(){
+			$("div.category").width(GLOBALS.dimensions.cat_width + "px");
+			$(this).width(GLOBALS.dimensions.cat_width*1.25 + "px");
+			$("#sidebar")
+			    .width(GLOBALS.dimensions.cat_width*1.25 + "px")
+			    ;//.css("background", GLOBALS.categories[$(this).find($("span")).text()]); // keep just in case
+			$("body").css("background", GLOBALS.categories[$(this).find($("span")).text()]);
+		    }, function(){
+			$("#sidebar").width(GLOBALS.dimensions.cat_width + "px");
+			$("div.category").width(GLOBALS.dimensions.cat_width + "px");
+		    });
+
+		// category image
                 $("div.category img").attr({
                     "width" : $("div.category").height()*0.8 + "px",
                     "height" : $("div.category").height()*0.8 + "px"
                 }).css({"margin-top" : $("div.category").height()*0.1 + "px"});
+
+		// category span
                 $("div.category span").css("line-height", $("div.category span").height() + "px");
-                $("div.category").hover(function(){
-                    $("#sidebar").width($("#sidebar").width()*1.25 + "px");
-                    $(this).width($("div.category").width()*1.25 + "px");
-                }, function(){
-                    $("#sidebar").width(GLOBALS.dimensions.sidebar_width + "px");
-                    $("div.category").width(GLOBALS.dimensions.sidebar_width + "px");
-                });
             };
             
             window.onload = function(){
                 getDims();
+		initPage();
                 setPage();
-            };
+	    };
             
             window.onresize = function(){
                 getDims();
@@ -106,8 +156,11 @@
         </script>
     </head>
     <body>
-        <div id = "main"></div>
-        <div id = "sidebar">
+        <div id = "main">
+	    poop
+	</div>
+	<div id = "banner" style = "width: 60%; float: left; margin-left: 10%; color: white; font-size: 25pt; text-align: center; background: black; opacity: 0.2; position: fixed;">haha</div>
+	<div id = "sidebar">
 	    <div class = "category clickable" style = "background: #c0392b;">
                 <img src = "https://cdn1.iconfinder.com/data/icons/perfect-flat-icons-2/512/Newspaper_news_rss_vector_paper_symbol_simple.png" alt = "">
                 <span>All News</span>
