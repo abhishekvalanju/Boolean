@@ -91,14 +91,12 @@
 	    // set page upon load or resize
 	    function resetPage(){
 		getDims();
-		//document.getElementById("main").style.minHeight = GLOBALS.dimensions.window_height;
-		//document.getElementById("about_us").style.height = $("#about_us").css("width");
 		$("body").css({
 		    "min-width": GLOBALS.dimensions.win_min_width + "px",
 		    "min-height": GLOBALS.dimensions.win_min_height + "px"
-		});alert($("body").css("min-height"));
+		});
 		$("main").css("min-height", GLOBALS.dimensions.win_min_height + "px");
-		$("#about_us").height($(this).width() + "px");
+		//$("#about_us").height($("#about_us").width() + "px");alert($("#about_us").height());
 		$("div.category").height((parseInt(GLOBALS.dimensions.window_height) - $("#about_us").height())/11 + "px");
 	    };
 
@@ -139,7 +137,7 @@
 	    <div class = "category clickable" style = "background: #2980b9;">US</div>
 	    <div class = "category clickable" style = "background: #34495e;">World</div>
 	    <div id = "about_us" style = "width: 100%; margin-bottom: 0; background: cyan;">
-		ho
+		
 	    </div>
 	</div>
 	<div id = "main" style = "width: 65%; float: left; margin-left: 20%; background: #ecf0f1;">
